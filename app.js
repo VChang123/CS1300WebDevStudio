@@ -26,14 +26,38 @@ const updatePage = async () => {
 
   // Make API request and get an array of fruit objects
   const fruitsArray = await apiRequest();
-  // console.log(fruitsArray);
+  console.log(fruitsArray);
 
   // TODO: Use either `map` and/or `filter` to extract some data from the array of fruit objects
   // For example, find "name of all fruits whose sugar > 15",
 
+  const filterData = fruitsArray.filter((fruit) => {
+    return fruit.nutritions.sugar > 7
+  })
+  
+  console.log(filterData);
+
+  let i = 0;
+  const fruitNames = []
+
+  while (i < filterData.length) {
+    fruitNames.push(filterData[i].name);
+    i++;
+  }
+
   // TODO: Create a new HTML element to display your data
 
+  const label = document.createElement('div')
+  label.innerHTML = "Fruits with sugar greater than 7:";
+
+  const fruitList = document.createElement('div');
+  fruitList.innerHTML = fruitNames;
   // TODO: Append your new element to the page
+  const existingElement = document.getElementById('cs1300-gallery');
+  existingElement.append(label);
+  existingElement.append(fruitList);
+  
+
 
 }
 
